@@ -14,9 +14,11 @@ package Tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -47,23 +49,24 @@ public class TestCase09 {
 
         String btnProducts = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(2) > a";
         String  titleAllProducts = "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2";
-        String  inputField = "#search_product";
+        String  inputField = "//*[@id=\"search_product\"]";
         String  btnInput = "#submit_search > i";
         String product = "polo";
         String titleSearchedProducts = "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2";
+        String poloText = "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > div.col-sm-4 > div > div.single-products > div.productinfo.text-center > p";
 
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnProducts)));
 
         driver.findElement(By.cssSelector(btnProducts)).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(titleAllProducts)));
 
-        // não está achando o input
-        driver.findElement(By.cssSelector(inputField)).sendKeys(product);
-        driver.findElement(By.cssSelector(btnInput)).click();
+        driver.findElement(By.xpath(inputField)).sendKeys(product);
+        driver.findElement(By.cssSelector(btnInput)).submit();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(titleSearchedProducts)));
 
-        // como seria isso?
-        // Verify all the products related to search are visible
+        WebElement element = driver.findElement(By.cssSelector(poloText));
+        String elementText = element.getText();
+        Assert.assertTrue(elementText.contains(product));
 
     }
 

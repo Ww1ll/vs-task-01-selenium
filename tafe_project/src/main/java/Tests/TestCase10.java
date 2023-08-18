@@ -41,7 +41,7 @@ public class TestCase10 {
     }
 
     @Test
-    public void testMustSearchProductSuccessfully() {
+    public void testSubscriptionInHomePageSuccessfully() {
 
         String subscription = "#footer > div.footer-widget > div > div > div.col-sm-3.col-sm-offset-1 > div > h2";
         String inputButton = "#susbscribe_email";

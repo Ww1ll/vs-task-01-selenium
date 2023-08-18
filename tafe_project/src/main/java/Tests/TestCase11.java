@@ -17,6 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -41,7 +42,7 @@ public class TestCase11 {
     }
 
     @Test
-    public void testMustSearchProductSuccessfully() {
+    public void testSubscriptionInCartPageSuccessfully() {
 
         String cartButton = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3) > a";
         String subscription = "#footer > div.footer-widget > div > div > div.col-sm-3.col-sm-offset-1 > div > h2";
@@ -60,6 +61,7 @@ public class TestCase11 {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(subscribeButton)));
         driver.findElement(By.cssSelector(subscribeButton)).click();
 
+        //Assert.assertEquals("You have been successfully subscribed!", driver.findElement(By.id()).getText());
 
         // esta mensagem aparece por poucos segundos, não consigo pegar o seletor...
         // 8. Verify success message 'You have been successfully subscribed!' is visible

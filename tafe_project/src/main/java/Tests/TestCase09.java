@@ -49,23 +49,23 @@ public class TestCase09 {
 
         String btnProducts = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(2) > a";
         String  titleAllProducts = "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2";
-        String  inputField = "//*[@id=\"search_product\"]";
+        String  inputField = "#search_product";
         String  btnInput = "#submit_search > i";
         String product = "polo";
         String titleSearchedProducts = "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2";
         String poloText = "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > div.col-sm-4 > div > div.single-products > div.productinfo.text-center > p";
 
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnProducts)));
-
         driver.findElement(By.cssSelector(btnProducts)).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(titleAllProducts)));
 
-        driver.findElement(By.xpath(inputField)).sendKeys(product);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(titleAllProducts)));
+        driver.findElement(By.cssSelector(inputField)).sendKeys(product);
         driver.findElement(By.cssSelector(btnInput)).submit();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(titleSearchedProducts)));
 
         WebElement element = driver.findElement(By.cssSelector(poloText));
         String elementText = element.getText();
+
         Assert.assertTrue(elementText.contains(product));
 
     }

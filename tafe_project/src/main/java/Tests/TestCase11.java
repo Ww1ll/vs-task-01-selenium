@@ -11,6 +11,7 @@
 
 package Tests;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,6 +45,7 @@ public class TestCase11 {
     @Test
     public void testSubscriptionInCartPageSuccessfully() {
 
+        Faker faker = new Faker();
         String cartButton = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3) > a";
         String subscription = "#footer > div.footer-widget > div > div > div.col-sm-3.col-sm-offset-1 > div > h2";
         String inputButton = "#susbscribe_email";
@@ -56,7 +58,7 @@ public class TestCase11 {
         actions.moveToElement(driver.findElement(By.cssSelector(subscription))).perform();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(inputButton)));
-        driver.findElement(By.cssSelector(inputButton)).sendKeys("qa@gmail.com");
+        driver.findElement(By.cssSelector(inputButton)).sendKeys(faker.internet().emailAddress());
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(subscribeButton)));
         driver.findElement(By.cssSelector(subscribeButton)).click();

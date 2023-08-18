@@ -10,8 +10,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-
-
 public class TestCase07 {
     public static WebDriver driver;
     public static WebDriverWait wait;

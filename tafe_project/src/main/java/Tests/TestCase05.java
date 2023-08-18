@@ -48,11 +48,9 @@ public class TestCase05 {
     public void deveRegistrarComEmailExistente(){
 
         String nome = faker.name().firstName();
+        String sobrenome = faker.name().lastName();
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
-
-        String nomeEmpresa = faker.name().fullName();
-
 
         String btnSignUp = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(4) > a";
 
@@ -78,6 +76,63 @@ public class TestCase05 {
 
         driver.findElement(By.cssSelector("#years")).sendKeys("2003");
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"first-name\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"first-name\"]")).sendKeys(nome);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"last-name\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"last-name\"]")).sendKeys(sobrenome);
+
+        String nomeEmpresa = faker.name().fullName();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"company\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"company\"]")).sendKeys(nomeEmpresa);
+
+        String primeiroEndereco = faker.address().fullAddress();
+        String segundoEndereco = faker.address().fullAddress();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"address\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"address\"]")).sendKeys(primeiroEndereco);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"address2\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"address2\"]")).sendKeys(segundoEndereco);
+
+
+        String estado = faker.address().state();
+        String cidade = faker.address().city();
+        String cep = faker.address().zipCode();
+        String telefone = faker.phoneNumber().cellPhone();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"state\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"state\"]")).sendKeys(estado);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"city\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"state\"]")).sendKeys(cidade);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"zipcode\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"zipcode\"]")).sendKeys(cep);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"mobile_number\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"mobile_number\"]")).sendKeys(telefone);
+
+
+        String btnCriarConta = "#form > div > div > div > div > form > button";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(btnCriarConta)));
+        driver.findElement(By.cssSelector(btnCriarConta)).click();
+
+        String btnContinuar = "#form > div > div > div > div > a";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(btnContinuar)));
+        driver.findElement(By.cssSelector(btnContinuar)).click();
+
+        String btnLogout = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(4) > a";
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"signup-name\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"signup-name\"]")).sendKeys(nome);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-qa=\"signup-email\"]")));
+        driver.findElement(By.cssSelector("input[data-qa=\"signup-email\"]")).sendKeys(email);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(btnSignUp)));
+        driver.findElement(By.cssSelector(btnSignUp)).click();
 
 
     }

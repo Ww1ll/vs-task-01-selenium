@@ -15,6 +15,7 @@
 package Tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -42,7 +43,7 @@ public class TestCase12 {
 
     @AfterTest
     public void finalizarNavegador() {
-      driver.quit();
+    driver.quit();
     }
 
     @Test
@@ -60,23 +61,20 @@ public class TestCase12 {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.cssSelector(firstProduct))).perform();
 
-        driver.findElement(By.cssSelector("#dismiss-button > div > span")).click();
-
-        //driver.findElement(By.cssSelector(firstProduct)).click();
-        //driver.findElement(By.cssSelector(addedButton)).click();
+        driver.findElement(By.cssSelector(firstProduct)).click();
+        driver.findElement(By.cssSelector(addedButton)).click();
 
         actions.moveToElement(driver.findElement(By.cssSelector(secondProduct))).perform();
 
-        //driver.findElement(By.cssSelector(addedButton)).click();
+        driver.findElement(By.cssSelector(addedButton)).click();
 
-        //actions.moveToElement(driver.findElement(By.cssSelector(cartButton))).perform();
-        //driver.findElement(By.cssSelector(cartButton)).click();
+        actions.moveToElement(driver.findElement(By.cssSelector(cartButton))).perform();
+        driver.findElement(By.cssSelector(cartButton)).click();
 
-       // boolean product1 = driver.findElement(By.id("product-1")).isDisplayed();
-        //Assert.assertNotNull(product1);
-        //Assert.assertNotNull(driver.findElement(By.id("product-2")));
-        //Assert.assertNotNull(driver.findElement(By.id("#product-1 > td.cart_quantity")));
-        //Assert.assertNotNull(driver.findElement(By.id("#product-2 > td.cart_quantity")));
+        Assert.assertTrue(driver.findElement(By.id("product-2")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.id("product-2")).isDisplayed());
+        Assert.assertNotNull(driver.findElement(By.id("#product-1 > td.cart_quantity")));
+        Assert.assertNotNull(driver.findElement(By.id("#product-2 > td.cart_quantity")));
 
 
 

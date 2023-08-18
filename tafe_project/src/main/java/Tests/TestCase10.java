@@ -17,6 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -59,13 +60,7 @@ public class TestCase10 {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(subscribeButton)));
         driver.findElement(By.cssSelector(subscribeButton)).click();
 
-       // try {
-       //     Thread.sleep(10000); // Aguarda por 2 segundos
-       // } catch (InterruptedException e) {
-       //     e.printStackTrace();
-       // }
-        // esta mensagem aparece por poucos segundos, não consigo pegar o seletor...
-        // 7. Verify success message 'You have been successfully subscribed!' is visible
+        Assert.assertEquals("You have been successfully subscribed!", driver.findElement(By.cssSelector("#success-subscribe > div")).getText());
 
     }
 

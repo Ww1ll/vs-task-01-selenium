@@ -15,7 +15,6 @@
 package Tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -58,6 +57,8 @@ public class TestCase12 {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnProducts)));
         driver.findElement(By.cssSelector(btnProducts)).click();
 
+
+        // não está passando, neste ponto está abrindo um iframe de propaganda do google, que não conseguimos eliminar
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.cssSelector(firstProduct))).perform();
 

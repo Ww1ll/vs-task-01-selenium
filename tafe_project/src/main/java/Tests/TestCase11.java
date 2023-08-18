@@ -63,10 +63,7 @@ public class TestCase11 {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(subscribeButton)));
         driver.findElement(By.cssSelector(subscribeButton)).click();
 
-        //Assert.assertEquals("You have been successfully subscribed!", driver.findElement(By.id()).getText());
-
-        // esta mensagem aparece por poucos segundos, não consigo pegar o seletor...
-        // 8. Verify success message 'You have been successfully subscribed!' is visible
+        Assert.assertEquals("You have been successfully subscribed!", driver.findElement(By.cssSelector("#success-subscribe > div")).getText());
 
     }
 

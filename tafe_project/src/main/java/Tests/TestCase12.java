@@ -59,14 +59,14 @@ public class TestCase12 {
 
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.cssSelector(firstProduct))).perform();
-        //driver.findElement(By.cssSelector(firstProduct)).click();
-        //driver.findElement(By.cssSelector(addedButton)).click();
+        driver.findElement(By.cssSelector(firstProduct)).click();
+        driver.findElement(By.cssSelector(addedButton)).click();
 
-       // driver.findElement(By.cssSelector(secondProduct)).click();
-        //driver.findElement(By.cssSelector(addedButton)).click();
+        driver.findElement(By.cssSelector(secondProduct)).click();
+        driver.findElement(By.cssSelector(addedButton)).click();
 
-        //actions.moveToElement(driver.findElement(By.cssSelector(cartButton))).perform();
-        //driver.findElement(By.cssSelector(cartButton)).click();
+        actions.moveToElement(driver.findElement(By.cssSelector(cartButton))).perform();
+        driver.findElement(By.cssSelector(cartButton)).click();
 
        // boolean product1 = driver.findElement(By.id("product-1")).isDisplayed();
         //Assert.assertNotNull(product1);

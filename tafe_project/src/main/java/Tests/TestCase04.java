@@ -4,19 +4,18 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.Locale;
 
-public class TestCase01 {
+public class TestCase04 {
 
     private static Faker faker = new Faker(new Locale("PT-BR"));
     public WebDriver browser;
-
-    public static String password;
-    public static String email;
 
     @BeforeTest
     public void abrirNavegador(){
@@ -27,15 +26,11 @@ public class TestCase01 {
     }
 
     @Test
-    public void RegisterUser(){
-
-        browser.findElement(By.tagName("body")).isDisplayed();
-
+    public void LogoutUser(){
         browser.findElement(By.xpath("//a[@href=\"/login\"]")).click();
-        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/h2")).isDisplayed();
 
-        password = faker.internet().password();
-        email = faker.internet().emailAddress();
+        String password = faker.internet().password();
+        String email = faker.internet().emailAddress();
         String name = faker.name().nameWithMiddle();
         browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/input[2]")).sendKeys(name);
         browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/input[3]")).sendKeys(email);
@@ -84,24 +79,27 @@ public class TestCase01 {
 
         //Clicar no botão
         browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div/form/button")).click();
+        browser.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[1]/a")).click();
+        browser.findElement(By.tagName("body")).isDisplayed();
+        browser.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]")).click();
+        browser.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")).click();
 
-        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/h2")).isDisplayed();
 
-        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div/a")).click();
+        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/h2")).isDisplayed();
+
+        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[2]")).sendKeys(email);
+        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[3]")).sendKeys(password);
+        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/button")).click();
 
         browser.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a")).isDisplayed();
 
-        //Clicar em deletar:
-        browser.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[5]/a")).click();
-        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/h2")).isDisplayed();
-        browser.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div/a")).click();
-
-        browser.quit();
+        browser.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")).click();
+        String urlAtual = browser.getCurrentUrl();
+        Assert.assertEquals(urlAtual, "https://automationexercise.com/login");
     }
 
     @AfterTest
     public void fechar(){
         browser.quit();
     }
-
 }
